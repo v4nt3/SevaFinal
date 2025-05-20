@@ -1,0 +1,188 @@
+/* Navbar.css - Estilo vintage mejorado */
+.navbar {
+  background-color: var(--dark);
+  padding: 0.8rem 2rem;
+  color: var(--cream);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 2px solid var(--gold);
+}
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--secondary);
+  opacity: 0.5;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-logo .logo-text {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.navbar-logo .logo-text::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navbar-links a {
+  color: var(--cream);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--border-radius);
+  position: relative;
+  font-family: "Lora", serif;
+}
+
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--gold);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.navbar-links a:hover::after,
+.navbar-links .active::after {
+  width: 80%;
+}
+
+.navbar-links a:hover,
+.navbar-links .active {
+  color: var(--gold);
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 500;
+  color: var(--cream);
+  font-style: italic;
+}
+
+.logout-button {
+  background-color: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Lora", serif;
+}
+
+.logout-button:hover {
+  background-color: var(--gold);
+  color: var(--dark);
+  border-color: var(--gold);
+  transform: none;
+}
+
+/* Carrito estilizado */
+.carrito-button {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: none;
+  width: 50px;
+}
+
+.carrito-button:hover {
+  background: none;
+  transform: none;
+}
+
+.icono-carrito {
+  width: 30px;
+  height: 30px;
+  filter: invert(90%) sepia(12%) saturate(634%) hue-rotate(348deg) brightness(105%) contrast(92%);
+  transition: all 0.3s ease;
+}
+
+.carrito-button:hover .icono-carrito {
+  filter: invert(76%) sepia(38%) saturate(503%) hue-rotate(348deg) brightness(90%) contrast(91%);
+  transform: scale(1.1);
+}
+
+.carrito-contador {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  background-color: var(--accent);
+  color: var(--dark);
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid var(--dark);
+  box-shadow: var(--vintage-shadow);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .navbar-user {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1rem;
+  }
+
+  .navbar-logo .logo-text::after {
+    width: 50%;
+  }
+}

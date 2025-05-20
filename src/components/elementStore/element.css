@@ -1,0 +1,149 @@
+/* element.css - Estilos para la tienda con tema vintage */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Asegurar que en pantallas pequeñas se vean menos productos por fila */
+@media (max-width: 1200px) {
+  .galeria {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .galeria {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+}
+
+.producto {
+  background-color: var(--cream);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--vintage-shadow);
+  transition: var(--transition);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slideUp 0.5s ease-in-out;
+  border: 1px solid var(--gold);
+  position: relative;
+}
+
+.producto::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d3b88c' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.producto h2 {
+  font-size: 1.4rem;
+  color: var(--dark);
+  margin: 0.8rem 0;
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.producto h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background-color: var(--gold);
+}
+
+.producto p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-family: "Lora", serif;
+}
+
+.producto button {
+  background-color: var(--primary);
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: var(--transition);
+  color: var(--cream);
+  border: 1px solid var(--dark);
+  font-family: "Lora", serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.producto button:hover {
+  background-color: var(--secondary);
+}
+
+model-viewer {
+  width: 100% !important;
+  height: 250px !important;
+  background-color: var(--paper);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  border: 1px solid var(--gold);
+}
+
+.App h1 {
+  font-size: 2.5rem;
+  color: var(--dark);
+  text-align: center;
+  margin: 2rem 0;
+  position: relative;
+  padding-bottom: 0.8rem;
+  font-family: "DM Serif Display", serif;
+  letter-spacing: 1px;
+}
+
+.App h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.App h1::before {
+  content: "★";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  color: var(--gold);
+  background-color: var(--background);
+  padding: 0 10px;
+  z-index: 1;
+}
