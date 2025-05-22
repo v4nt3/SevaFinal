@@ -10,6 +10,9 @@ import Login from "./components/login/login"
 import ResumenCompra from "./components/compra/resumenCompra"
 import Favorito from "./components/PgFavoritos/favorito"
 import DetalleProducto from "./components/DetalleProducto/DetalleProducto"
+import Formulario from "./components/FomularioUsuario/Formulario"
+import HistorialDeCompra from "./components/HistorialCompra/HistorialCompra"; // Importado correctamente
+import DatosEnvioForm from "./components/FomularioUsuario/Formulario"; // Asegúrate de que esta ruta sea correcta
 import "./App.css"
 
 function App() {
@@ -47,8 +50,11 @@ function App() {
             <Route path="elementStore" element={<ElementStore carrito={carrito} setCarrito={setCarrito} favoritos={favoritos} setFavoritos={setFavoritos} setSelectedProducto={DetalleProducto} />} />
             <Route path="carrito" element={<Carrito carrito={carrito} setCarrito={setCarrito} />} />
             <Route path="detalle/:id" element={<DetalleProducto setCarrito={setCarrito} favoritos={favoritos} setFavoritos={setFavoritos}/>} />
-            <Route path="resumen" element={<ResumenCompra carrito={carrito} />} />
+            <Route path="datos-envio" element={<DatosEnvioForm />} />
+            <Route path="resumen" element={<ResumenCompra setCarrito={setCarrito} />} />
             <Route path="PgFavoritos" element={<Favorito favoritos={favoritos} setFavoritos={setFavoritos} setCarrito={setCarrito} />} />
+            <Route path="historial-de-compra" element={<HistorialDeCompra />} />
+            <Route path="formulario" element={<Formulario />} />
           </Route>
         )}
         <Route path="*" element={<Navigate to="/" replace />} />

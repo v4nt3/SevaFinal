@@ -13,8 +13,8 @@ function Navbar({ username, onLogout, carrito, setMostrarCarrito }) {
           </Link>
         </div>
         <div className="navbar-links">
-          <Link 
-            to="/elementStore" 
+          <Link
+            to="/elementStore"
             className={location.pathname === '/elementStore' ? 'active' : ''}
           >
             Tienda
@@ -26,8 +26,16 @@ function Navbar({ username, onLogout, carrito, setMostrarCarrito }) {
             Favoritos
           </Link>
 
+          {/* Nuevo enlace para Historial de Compras */}
+          <Link
+            to="/historial-de-compra"
+            className={location.pathname === '/historial-de-compra' ? 'active' : ''}
+          >
+            Historial
+          </Link>
+
           {/* Este botón muestra el carrito como modal */}
-          <button 
+          <button
             className={`carrito-button ${location.pathname === '/carrito' ? 'active' : ''}`}
             onClick={() => setMostrarCarrito(true)}
           >
@@ -39,7 +47,7 @@ function Navbar({ username, onLogout, carrito, setMostrarCarrito }) {
 
         </div>
 
-        {username && ( 
+        {username && (
           <div className="navbar-user">
             Bienvenid@, {username}
             <button onClick={onLogout} className="logout-button">

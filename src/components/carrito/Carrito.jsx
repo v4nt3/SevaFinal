@@ -36,9 +36,8 @@ function Carrito({ carrito, setCarrito, onClose }) {
   const totalConIVA = subtotal + iva
 
   const comprar = () => {
-    navigate("/resumen", { state: { items: carrito, subtotal, iva, totalConIVA } })
-    setCarrito([])
-    onClose()
+    navigate("/datos-envio", { state: { items: carrito } })
+    onClose() // Close the cart modal
   }
 
   const eliminarItem = (id) => {
