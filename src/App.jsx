@@ -8,12 +8,15 @@ import ElementStore from "./components/elementStore/element"
 import Carrito from "./components/carrito/Carrito"
 import Login from "./components/login/login"
 import ResumenCompra from "./components/compra/resumenCompra"
+import Favorito from "./components/PgFavoritos/favorito"
+import DetalleProducto from "./components/DetalleProducto/DetalleProducto"
 import "./App.css"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState(null)
   const [carrito, setCarrito] = useState([])
+  const [favoritos, setFavoritos] = useState([])
 
   const handleLogin = (username) => {
     localStorage.setItem("user", username)
@@ -26,6 +29,7 @@ function App() {
     setUser(null)
     setIsLoggedIn(false)
     setCarrito([])
+    setFavoritos([])
   }
 
   return (
@@ -40,10 +44,11 @@ function App() {
           >
             <Route index element={<Navigate to="/elementStore" replace />} />
 
-            <Route path="elementStore" element={<ElementStore carrito={carrito} setCarrito={setCarrito} />} />
+            <Route path="elementStore" element={<ElementStore carrito={carrito} setCarrito={setCarrito} favoritos={favoritos} setFavoritos={setFavoritos} setSelectedProducto={DetalleProducto} />} />
             <Route path="carrito" element={<Carrito carrito={carrito} setCarrito={setCarrito} />} />
-
+            <Route path="detalle/:id" element={<DetalleProducto setCarrito={setCarrito} favoritos={favoritos} setFavoritos={setFavoritos}/>} />
             <Route path="resumen" element={<ResumenCompra carrito={carrito} />} />
+            <Route path="PgFavoritos" element={<Favorito favoritos={favoritos} setFavoritos={setFavoritos} setCarrito={setCarrito} />} />
           </Route>
         )}
         <Route path="*" element={<Navigate to="/" replace />} />

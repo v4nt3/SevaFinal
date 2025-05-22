@@ -1,14 +1,10 @@
-import { useState } from 'react';
-import { productos } from '../../data'; 
-import '@google/model-viewer';
-import './element.css'; 
-import { ToastContainer, toast } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
-import { Link } from 'react-router-dom';
+import "./Carrito.css"
+function Favorito({favoritos,setFavoritos,setCarrito}) {
 
-
-function ElementStore({setCarrito, favoritos, setFavoritos, setSelectedProducto}) {
-
+    const eliminarItem = (id) => {
+    const nuevoFavoritos = favoritos.filter((item) => item.id !== id)
+    setFavoritos(nuevoFavoritos)
+  }
 
   const agregarAlCarrito = (producto) => {
     setCarrito((prev) => {
@@ -25,25 +21,12 @@ function ElementStore({setCarrito, favoritos, setFavoritos, setSelectedProducto}
     });
   };
 
-  const agregarAFavoritos = (producto) => {
-    const existe = favoritos.find((item) => item.id === producto.id);
-    if (existe) {
-      toast.info('El producto ya está en favoritos');
-    } else {
-      toast.info('Producto agregado a favoritos');
-      setFavoritos((prev) => [...prev, { ...producto, cantidad: 1 }]);
-    }
-  };
-
   return (
     <div className="App">
-
       <h1>Tienda 3D</h1>
       <div className="galeria">
-
-        {productos.map((item) => (
+        {favoritos.map((item) => (
           <div key={item.id} className="producto">
-            <Link to={`/detalle/${item.id}`}>
             <model-viewer
               src={item.modelo}
               alt={item.nombre}
@@ -54,16 +37,12 @@ function ElementStore({setCarrito, favoritos, setFavoritos, setSelectedProducto}
             />
             <h2>{item.nombre}</h2>
             <p>${item.precio}</p>
-          </Link>
             <button onClick={() => agregarAlCarrito(item)}>Agregar</button>
-            <button onClick={() => agregarAFavoritos(item)}>Agregar a Favoritos</button>
+            <button onClick={() => eliminarItem(item.id)}>Eliminar</button>
           </div>
         ))}
       </div>
-      <ToastContainer position="top-right" autoClose={3000} />
     </div>
-    
   );
 }
-
-export default ElementStore;
+export default Favorito;

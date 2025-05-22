@@ -19,6 +19,12 @@ function Navbar({ username, onLogout, carrito, setMostrarCarrito }) {
           >
             Tienda
           </Link>
+          <Link
+            to="/PgFavoritos"
+            className={location.pathname === '/PgFavoritos' ? 'active' : ''}
+          >
+            Favoritos
+          </Link>
 
           {/* Este botón muestra el carrito como modal */}
           <button 

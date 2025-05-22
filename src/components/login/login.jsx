@@ -8,45 +8,38 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    if (!username.trim() || !password.trim()) {
-      setError('Por favor, completa todos los campos');
+  if (!username.trim() || !password.trim()) {
+    setError('Por favor, completa todos los campos');
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+
+  if (isRegistering) {
+    const existingUser = users.find((u) => u.username === username);
+    if (existingUser) {
+      setError('El usuario ya existe');
       return;
     }
 
-    if (isRegistering) {
-      // Registro
-      const { data, error } = await supabase
-        .from('users') // tabla de usuarios en supabase
-        .insert([{ username, password }]);
-
-      if (error) {
-        setError('Error al registrar: ' + error.message);
-      } else {
-        setError('');
-        setIsRegistering(false);
-        alert('Registro exitoso. Ahora puedes iniciar sesión.');
-      }
+    users.push({ username, password });
+    localStorage.setItem('users', JSON.stringify(users));
+    setError('');
+    alert('Registro exitoso. Ahora puedes iniciar sesión.');
+    setIsRegistering(false);
+  } else {
+    const match = users.find((u) => u.username === username && u.password === password);
+    if (match) {
+      setError('');
+      onLogin(username);
     } else {
-      // Login
-      const { data, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('username', username)
-        .eq('password', password)
-        .single();
-
-      if (error || !data) {
-        setError('Usuario o contraseña incorrectos');
-      } else {
-        setError('');
-        onLogin(username);
-      }
+      setError('Usuario o contraseña incorrectos');
     }
-  };
-
+  }
+};
   return (
     <div className="login-container">
       <div className="login-card">
