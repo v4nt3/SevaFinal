@@ -1,4 +1,4 @@
-/* Carrito.css - Estilo vintage actualizado con botones en columnas */
+/* Carrito.css - Estilo vintage actualizado */
 .overlay {
   position: fixed;
   top: 0;
@@ -78,83 +78,16 @@
 .carrito-contenedor li {
   padding: 1rem;
   border-bottom: 1px solid var(--gold);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   font-family: "Lora", serif;
   position: relative;
 }
 
 .carrito-contenedor li:last-child {
   border-bottom: none;
-}
-
-/* Información del producto */
-.item-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 500;
-  margin-bottom: 0.8rem;
-}
-
-/* Controles de cantidad - COLUMNAS */
-.item-controls {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  width: 100%;
-}
-
-/* Estilos para los botones según lo proporcionado por el usuario */
-.eliminar,
-.disminuir,
-.aumentar {
-  background-color: transparent;
-  border: 1px solid var(--gold);
-  color: var(--dark);
-  padding: 0.3rem 0.6rem;
-  margin: 0.3rem;
-  border-radius: var(--border-radius);
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: none;
-  height: 32px;
-}
-
-/* Estilos específicos para cada botón */
-.eliminar {
-  background-color: rgba(188, 108, 37, 0.1);
-  border-color: var(--danger);
-  color: var(--danger);
-  grid-column: 1;
-}
-
-.eliminar:hover {
-  background-color: var(--danger);
-  color: var(--cream);
-}
-
-.disminuir {
-  grid-column: 2;
-}
-
-.aumentar {
-  grid-column: 3;
-}
-
-.disminuir:hover,
-.aumentar:hover {
-  background-color: var(--gold);
-  color: var(--dark);
-}
-
-/* Responsive para pantallas pequeñas */
-@media (max-width: 480px) {
-  .item-controls {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
 }
 
 .carrito-contenedor h3 {
@@ -193,6 +126,51 @@
   margin: 0.5rem 0;
   font-family: "Lora", serif;
   font-size: 1rem;
+}
+
+/* Nuevos estilos para los botones de control de cantidad */
+.eliminar,
+.disminuir,
+.aumentar {
+  background-color: transparent;
+  border: 1px solid var(--gold);
+  color: var(--dark);
+  padding: 0.3rem 0.6rem;
+  margin: 0.3rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: none;
+}
+
+.eliminar {
+  background-color: rgba(188, 108, 37, 0.1);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.eliminar:hover {
+  background-color: var(--danger);
+  color: var(--cream);
+}
+
+.disminuir,
+.aumentar {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding: 0;
+}
+
+.disminuir:hover,
+.aumentar:hover {
+  background-color: var(--gold);
+  color: var(--dark);
+  transform: none;
 }
 
 /* Botón para vaciar carrito */

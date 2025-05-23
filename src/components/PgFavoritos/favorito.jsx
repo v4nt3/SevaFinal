@@ -1,4 +1,4 @@
-import "./Carrito.css"
+import "./carrito.css"
 function Favorito({favoritos,setFavoritos,setCarrito}) {
 
     const eliminarItem = (id) => {

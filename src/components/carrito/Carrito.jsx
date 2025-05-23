@@ -1,6 +1,6 @@
 "use client"
 
-import "./Carrito.css"
+import "./carrito.css"
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react" // Importamos useEffect
 
