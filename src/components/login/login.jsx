@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../supabase/supabaseClient';
-import './Login.css';
+import './login.css';
 
 function Login({ onLogin }) {
   const [isRegistering, setIsRegistering] = useState(false);
