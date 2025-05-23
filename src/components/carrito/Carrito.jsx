@@ -1,6 +1,5 @@
 "use client"
 
-
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react" // Importamos useEffect
 import "./carrito.css"
@@ -84,9 +83,7 @@ function Carrito({ carrito, setCarrito, onClose }) {
               {carrito.map((item) => (
                 <li key={item.id}>
                   {item.nombre} x {item.cantidad} = ${item.precio * item.cantidad}
-                  <button className="eliminar" onClick={() => eliminarItem(item.id)}>
-                    Eliminar
-                  </button>
+                
                   <button className="disminuir" onClick={() => disminuirCantidad(item.id)}>
                     -
                   </button>
