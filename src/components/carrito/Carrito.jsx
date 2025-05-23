@@ -1,8 +1,9 @@
 "use client"
 
-import "./carrito.css"
+
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react" // Importamos useEffect
+import "./carrito.css"
 
 function Carrito({ carrito, setCarrito, onClose }) {
   const navigate = useNavigate()
