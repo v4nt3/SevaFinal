@@ -67,7 +67,7 @@ function DetaProducto({ setFavoritos,setCarrito,favoritos }) {
                 </div>
 
                 <div className="product-info-panel">
-                    <p className="product-price">$ {producto.precio.toLocaleString('es-CO')}</p> {/* Formato de moneda COP */}
+                    <p className="product-price">$ {producto.precio.toLocaleString('es-CO')}</p>
                     
                     <p className="product-description">{producto.descripcion}</p>
 

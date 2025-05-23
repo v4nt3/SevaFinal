@@ -1,6 +1,6 @@
-/* resumenCompra.css - Estilo vintage */
+/* resumenCompra.css - Estilo vintage actualizado para factura */
 .resumen-container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 2rem auto;
   padding: 2.5rem;
   background-color: var(--cream);
@@ -66,6 +66,7 @@
   font-family: "Lora", serif;
   position: relative;
   overflow: hidden;
+  margin-top: 2rem;
 }
 
 .volver-btn:hover {
@@ -78,34 +79,80 @@
   margin-left: 8px;
 }
 
-.resumen-items {
+/* Estilos para la factura */
+.invoice-container {
   background-color: var(--paper);
   border: 1px solid var(--gold);
   border-radius: var(--border-radius);
-  padding: 1.5rem;
+  padding: 2rem;
   margin: 1.5rem 0;
   position: relative;
+  text-align: left;
 }
 
-.resumen-items h2 {
-  font-size: 1.5rem;
+.invoice-container::after {
+  content: "PAGADO";
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: "DM Serif Display", serif;
+  color: rgba(96, 108, 56, 0.3);
+  font-size: 1.2rem;
+  transform: rotate(15deg);
+  border: 2px solid rgba(96, 108, 56, 0.3);
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  pointer-events: none;
+}
+
+.invoice-container h2 {
+  font-size: 1.8rem;
   color: var(--dark);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-align: center;
   font-family: "Playfair Display", serif;
   position: relative;
   padding-bottom: 0.5rem;
 }
 
-.resumen-items h2::after {
+.invoice-container h2::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 100px;
   height: 2px;
-  background-color: var(--gold);
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.invoice-details {
+  margin-bottom: 2rem;
+  font-family: "Lora", serif;
+}
+
+.invoice-details p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.invoice-details p strong {
+  color: var(--dark);
+}
+
+.resumen-items {
+  border-top: 1px dashed var(--gold);
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.resumen-items h3 {
+  font-size: 1.4rem;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  font-family: "Playfair Display", serif;
 }
 
 .items-list {
@@ -148,13 +195,26 @@
   color: var(--dark);
 }
 
+.totals-section {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--gold);
+  padding-top: 1rem;
+}
+
+.total-line {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Lora", serif;
+  margin: 0.5rem 0;
+}
+
 .total-compra {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 2px solid var(--gold);
+  border-top: 1px double var(--gold);
   font-family: "Playfair Display", serif;
   font-weight: 600;
 }
@@ -169,20 +229,4 @@
   color: var(--primary);
   text-align: center;
   margin: 1.5rem 0;
-}
-
-/* Sello vintage */
-.resumen-items::after {
-  content: "PAGADO";
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-family: "DM Serif Display", serif;
-  color: rgba(96, 108, 56, 0.3);
-  font-size: 1.2rem;
-  transform: rotate(15deg);
-  border: 2px solid rgba(96, 108, 56, 0.3);
-  border-radius: 5px;
-  padding: 0.2rem 0.5rem;
-  pointer-events: none;
 }

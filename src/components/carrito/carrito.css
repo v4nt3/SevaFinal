@@ -1,4 +1,4 @@
-
+/* Carrito.css - Estilo vintage actualizado con botones en columnas */
 .overlay {
   position: fixed;
   top: 0;
@@ -53,7 +53,7 @@
   margin-bottom: 1.5rem;
   border-bottom: 2px solid var(--gold);
   padding-bottom: 0.5rem;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   text-align: center;
   position: relative;
 }
@@ -78,14 +78,83 @@
 .carrito-contenedor li {
   padding: 1rem;
   border-bottom: 1px solid var(--gold);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
+  position: relative;
 }
 
 .carrito-contenedor li:last-child {
   border-bottom: none;
+}
+
+/* Información del producto */
+.item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+/* Controles de cantidad - COLUMNAS */
+.item-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Estilos para los botones según lo proporcionado por el usuario */
+.eliminar,
+.disminuir,
+.aumentar {
+  background-color: transparent;
+  border: 1px solid var(--gold);
+  color: var(--dark);
+  padding: 0.3rem 0.6rem;
+  margin: 0.3rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  height: 32px;
+}
+
+/* Estilos específicos para cada botón */
+.eliminar {
+  background-color: rgba(188, 108, 37, 0.1);
+  border-color: var(--danger);
+  color: var(--danger);
+  grid-column: 1;
+}
+
+.eliminar:hover {
+  background-color: var(--danger);
+  color: var(--cream);
+}
+
+.disminuir {
+  grid-column: 2;
+}
+
+.aumentar {
+  grid-column: 3;
+}
+
+.disminuir:hover,
+.aumentar:hover {
+  background-color: var(--gold);
+  color: var(--dark);
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 480px) {
+  .item-controls {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .carrito-contenedor h3 {
@@ -93,7 +162,7 @@
   color: var(--dark);
   margin: 1.5rem 0;
   text-align: right;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
 }
 
 .comprar {
@@ -108,7 +177,7 @@
   width: 100%;
   margin-top: 1rem;
   transition: var(--transition);
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   position: relative;
   overflow: hidden;
 }
@@ -119,9 +188,36 @@
 }
 
 .carrito-contenedor p {
-  text-align: center;
-  font-style: italic;
+  text-align: right;
   color: var(--dark);
-  margin: 2rem 0;
-  font-family: 'Lora', serif;
+  margin: 0.5rem 0;
+  font-family: "Lora", serif;
+  font-size: 1rem;
+}
+
+/* Botón para vaciar carrito */
+.vaciar {
+  background-color: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  padding: 0.6rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.8rem;
+  transition: var(--transition);
+  font-family: "Lora", serif;
+}
+
+.vaciar:hover {
+  background-color: rgba(188, 108, 37, 0.1);
+  transform: none;
+}
+
+/* Estilos para los totales */
+.carrito-contenedor p {
+  font-family: "Lora", serif;
+  margin: 0.5rem 0;
+  text-align: right;
 }

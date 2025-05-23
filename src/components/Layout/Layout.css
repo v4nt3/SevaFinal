@@ -1,4 +1,4 @@
-/* Layout.css - Estilo vintage */
+/* Layout.css - Estilo vintage mejorado con responsividad */
 .layout {
   display: flex;
   flex-direction: column;
@@ -17,8 +17,23 @@
   margin-right: auto;
 }
 
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .main-content {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .main-content {
     padding: 1rem;
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 0.8rem;
   }
 }

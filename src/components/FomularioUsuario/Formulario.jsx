@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-// import './datosEnvioForm.css'; // Make sure this CSS file exists and is styled!
+import './Form.css';
 
 function DatosEnvioForm() {
   const navigate = useNavigate();
@@ -12,14 +12,10 @@ function DatosEnvioForm() {
     telefono: '',
   });
 
-  // Get the items from the location state passed by Carrito
   const items = location.state?.items || [];
 
-  // Optional: If you want to prevent direct access to this form without items
   useEffect(() => {
     if (items.length === 0) {
-      // If no items are present, redirect back to the store or cart
-      // You might want a more user-friendly message or modal here
       console.warn("No items found in cart state. Redirecting to store.");
       navigate('/elementStore');
     }
@@ -36,8 +32,6 @@ function DatosEnvioForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Navigate to the resumen (summary/invoice) page, passing both items and buyer info
-    // Note: The route in your App.jsx is "/resumen", not "/resumen-compra"
     navigate('/resumen', { state: { items: items, buyerInfo: formData } });
   };
 

@@ -1,4 +1,4 @@
-/* element.css - Estilos para la tienda con tema vintage */
+/* element.css - Estilos para la tienda con tema vintage - CORREGIDO */
 .galeria {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -35,10 +35,10 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   animation: slideUp 0.5s ease-in-out;
   border: 1px solid var(--gold);
   position: relative;
+  height: 100%; /* Asegurar que todas las tarjetas tengan la misma altura */
 }
 
 .producto::before {
@@ -57,6 +57,24 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
+.producto a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1; /* Permitir que el contenido del enlace crezca */
+}
+
+model-viewer {
+  width: 100% !important;
+  height: 250px !important;
+  background-color: var(--paper);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  border: 1px solid var(--gold);
+}
+
 .producto h2 {
   font-size: 1.4rem;
   color: var(--dark);
@@ -65,6 +83,10 @@
   text-align: center;
   position: relative;
   padding-bottom: 0.5rem;
+  min-height: 3rem; /* Altura mínima para mantener consistencia */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .producto h2::after {
@@ -84,6 +106,16 @@
   color: var(--primary);
   margin-bottom: 1rem;
   font-family: "Lora", serif;
+  text-align: center;
+}
+
+/* Contenedor para los botones que se mantiene en la parte inferior */
+.producto-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto; /* Empujar los botones hacia abajo */
+  width: 100%;
 }
 
 .producto button {
@@ -104,13 +136,28 @@
   background-color: var(--secondary);
 }
 
-model-viewer {
-  width: 100% !important;
-  height: 250px !important;
-  background-color: var(--paper);
-  border-radius: var(--border-radius);
-  margin-bottom: 1rem;
+.producto button:last-child {
+  background-color: transparent;
+  color: var(--primary);
   border: 1px solid var(--gold);
+  position: relative;
+  padding-left: 2rem;
+}
+
+/* Corazón para favoritos */
+.producto button:last-child::before {
+  content: "♥";
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+.producto button:last-child:hover {
+  background-color: rgba(231, 188, 145, 0.1);
+  color: var(--accent);
 }
 
 .App h1 {
@@ -148,21 +195,19 @@ model-viewer {
   z-index: 1;
 }
 
-
-.mensaje-favorito {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #00c851;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  z-index: 9999;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  animation: fadein 0.3s ease;
+/* Estilos para las notificaciones toast */
+.Toastify__toast {
+  background-color: var(--cream) !important;
+  color: var(--dark) !important;
+  font-family: "Lora", serif !important;
+  border: 1px solid var(--gold) !important;
+  box-shadow: var(--vintage-shadow) !important;
 }
 
-@keyframes fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.Toastify__toast-body {
+  font-family: "Lora", serif !important;
+}
+
+.Toastify__progress-bar {
+  background: linear-gradient(to right, var(--gold), var(--primary)) !important;
 }

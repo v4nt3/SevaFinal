@@ -17,19 +17,17 @@ function Carrito({ carrito, setCarrito, onClose }) {
       }
     } catch (error) {
       console.error("Error al cargar el carrito de localStorage:", error)
-      // En caso de error (ej. JSON inválido), inicializa el carrito vacío
       setCarrito([])
     }
-  }, [setCarrito]) // Ejecutar solo una vez al montar el componente
+  }, [setCarrito]) 
 
-  // Guardar el carrito en localStorage cada vez que cambia
   useEffect(() => {
     try {
       localStorage.setItem("carritoCompras", JSON.stringify(carrito))
     } catch (error) {
       console.error("Error al guardar el carrito en localStorage:", error)
     }
-  }, [carrito]) // Ejecutar cada vez que el estado del carrito cambia
+  }, [carrito]) 
 
   const subtotal = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
   const iva = subtotal * IVA_PORCENTAJE
@@ -37,7 +35,7 @@ function Carrito({ carrito, setCarrito, onClose }) {
 
   const comprar = () => {
     navigate("/datos-envio", { state: { items: carrito } })
-    onClose() // Close the cart modal
+    onClose() 
   }
 
   const eliminarItem = (id) => {
