@@ -1,71 +1,134 @@
 "use client"
 
+import "./Carrito.css"
 import { useNavigate } from "react-router-dom"
-import { useEffect } from "react" // Importamos useEffect
-import "./carrito.css"
+import { useEffect } from "react"
 
 function Carrito({ carrito, setCarrito, onClose }) {
   const navigate = useNavigate()
-  const IVA_PORCENTAJE = 0.12 // Define tu porcentaje de IVA aquí
+  const IVA_PORCENTAJE = 0.12
 
-  // Cargar el carrito desde localStorage al inicio
-  useEffect(() => {
+  // Función para limpiar localStorage si hay datos corruptos
+  const limpiarLocalStorageCorrupto = () => {
     try {
       const carritoGuardado = localStorage.getItem("carritoCompras")
       if (carritoGuardado) {
-        setCarrito(JSON.parse(carritoGuardado))
+        const parsed = JSON.parse(carritoGuardado)
+        // Verificar que sea un array válido
+        if (!Array.isArray(parsed)) {
+          console.warn("Datos de carrito corruptos en localStorage, limpiando...")
+          localStorage.removeItem("carritoCompras")
+          return []
+        }
+        // Verificar que cada item tenga las propiedades necesarias
+        const carritoLimpio = parsed.filter(
+          (item) =>
+            item &&
+            typeof item === "object" &&
+            item.id !== undefined &&
+            item.nombre &&
+            typeof item.precio === "number" &&
+            typeof item.cantidad === "number" &&
+            item.cantidad > 0,
+        )
+        return carritoLimpio
       }
+      return []
     } catch (error) {
-      console.error("Error al cargar el carrito de localStorage:", error)
-      setCarrito([])
+      console.error("Error al leer localStorage:", error)
+      localStorage.removeItem("carritoCompras")
+      return []
     }
-  }, [setCarrito]) 
+  }
 
+  // Cargar el carrito desde localStorage al inicio (solo una vez)
+  useEffect(() => {
+    const carritoLimpio = limpiarLocalStorageCorrupto()
+    if (carritoLimpio.length !== carrito.length || JSON.stringify(carritoLimpio) !== JSON.stringify(carrito)) {
+      setCarrito(carritoLimpio)
+    }
+  }, []) // Solo ejecutar una vez al montar
+
+  // Guardar el carrito en localStorage cada vez que cambia
   useEffect(() => {
     try {
-      localStorage.setItem("carritoCompras", JSON.stringify(carrito))
+      if (Array.isArray(carrito)) {
+        localStorage.setItem("carritoCompras", JSON.stringify(carrito))
+      }
     } catch (error) {
       console.error("Error al guardar el carrito en localStorage:", error)
     }
-  }, [carrito]) 
+  }, [carrito])
 
-  const subtotal = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
+  const subtotal = carrito.reduce((acc, item) => {
+    if (item && typeof item.precio === "number" && typeof item.cantidad === "number") {
+      return acc + item.precio * item.cantidad
+    }
+    return acc
+  }, 0)
+
   const iva = subtotal * IVA_PORCENTAJE
   const totalConIVA = subtotal + iva
 
   const comprar = () => {
-    navigate("/datos-envio", { state: { items: carrito } })
-    onClose() 
+    if (carrito.length > 0) {
+      navigate("/datos-envio", { state: { items: carrito } })
+      onClose()
+    }
   }
 
   const eliminarItem = (id) => {
-    const nuevoCarrito = carrito.filter((item) => item.id !== id)
-    setCarrito(nuevoCarrito)
+    try {
+      const nuevoCarrito = carrito.filter((item) => item && item.id !== id)
+      setCarrito(nuevoCarrito)
+    } catch (error) {
+      console.error("Error al eliminar item:", error)
+    }
   }
 
   const eliminarTodo = () => {
-    setCarrito([])
+    try {
+      setCarrito([])
+      localStorage.removeItem("carritoCompras")
+    } catch (error) {
+      console.error("Error al vaciar carrito:", error)
+    }
   }
 
   const disminuirCantidad = (id) => {
-    const nuevoCarrito = carrito.map((item) => {
-      if (item.id === id) {
-        return { ...item, cantidad: item.cantidad - 1 }
-      }
-      return item
-    })
-    setCarrito(nuevoCarrito.filter((item) => item.cantidad > 0))
+    try {
+      const nuevoCarrito = carrito
+        .map((item) => {
+          if (item && item.id === id) {
+            const nuevaCantidad = item.cantidad - 1
+            return { ...item, cantidad: nuevaCantidad }
+          }
+          return item
+        })
+        .filter((item) => item && item.cantidad > 0)
+
+      setCarrito(nuevoCarrito)
+    } catch (error) {
+      console.error("Error al disminuir cantidad:", error)
+    }
   }
 
   const aumentarCantidad = (id) => {
-    const nuevoCarrito = carrito.map((item) => {
-      if (item.id === id) {
-        return { ...item, cantidad: item.cantidad + 1 }
-      }
-      return item
-    })
-    setCarrito(nuevoCarrito)
+    try {
+      const nuevoCarrito = carrito.map((item) => {
+        if (item && item.id === id) {
+          return { ...item, cantidad: item.cantidad + 1 }
+        }
+        return item
+      })
+      setCarrito(nuevoCarrito)
+    } catch (error) {
+      console.error("Error al aumentar cantidad:", error)
+    }
   }
+
+  // Verificar que carrito sea un array válido
+  const carritoValido = Array.isArray(carrito) ? carrito : []
 
   return (
     <div className="overlay">
@@ -75,26 +138,52 @@ function Carrito({ carrito, setCarrito, onClose }) {
         </button>
 
         <h2>Tu carrito</h2>
-        {carrito.length === 0 ? (
+        {carritoValido.length === 0 ? (
           <p>Carrito vacío</p>
         ) : (
           <>
             <ul>
-              {carrito.map((item) => (
-                <li key={item.id}>
-                  {item.nombre} x {item.cantidad} = ${item.precio * item.cantidad}
-                
-                  <button className="disminuir" onClick={() => disminuirCantidad(item.id)}>
-                    -
-                  </button>
-                  <button className="aumentar" onClick={() => aumentarCantidad(item.id)}>
-                    +
-                  </button>
-                </li>
-              ))}
+              {carritoValido.map((item) => {
+                // Verificar que el item sea válido antes de renderizar
+                if (
+                  !item ||
+                  !item.id ||
+                  !item.nombre ||
+                  typeof item.precio !== "number" ||
+                  typeof item.cantidad !== "number"
+                ) {
+                  return null
+                }
+
+                return (
+                  <li key={item.id}>
+                    <div className="item-info">
+                      <span>
+                        {item.nombre} x {item.cantidad}
+                      </span>
+                      <span>${(item.precio * item.cantidad).toFixed(2)}</span>
+                    </div>
+                    <div className="item-controls">
+                      <button className="eliminar" onClick={() => eliminarItem(item.id)}>
+                        Eliminar
+                      </button>
+                      <div className="quantity-controls">
+                        <button className="disminuir" onClick={() => disminuirCantidad(item.id)}>
+                          -
+                        </button>
+                        <button className="aumentar" onClick={() => aumentarCantidad(item.id)}>
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                )
+              })}
             </ul>
             <p>Subtotal: ${subtotal.toFixed(2)}</p>
-            <p>IVA ({IVA_PORCENTAJE * 100}%): ${iva.toFixed(2)}</p>
+            <p>
+              IVA ({(IVA_PORCENTAJE * 100).toFixed(0)}%): ${iva.toFixed(2)}
+            </p>
             <h3>Total: ${totalConIVA.toFixed(2)}</h3>
             <button className="comprar" onClick={comprar}>
               Comprar
