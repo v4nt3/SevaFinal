@@ -40,11 +40,11 @@ La aplicación se abrirá en tu navegador, normalmente en http://localhost:5173
 
 
 ## 🧰 Tecnologías utilizadas
-*Vite
-*React
-*model-viewer
-*ESLint
-*npm como gestor de paquetes
+- Vite
+- React
+- model-viewer
+- ESLint
+- npm como gestor de paquetes
 
 ## 👨‍💻 Autores
 * Joan Sebastian Tunubala Sanchez - Desarrollador principal
