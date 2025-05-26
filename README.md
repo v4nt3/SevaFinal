@@ -49,5 +49,6 @@ La aplicación se abrirá en tu navegador, normalmente en http://localhost:5173
 ## 👨‍💻 Autores
 * Joan Sebastian Tunubala Sanchez - Desarrollador principal
 * Gissel Vanessa Quitián Rojas - Desarroladora Principal
+
 ¡Estudiante de Ingeniería en Sistemas y Multimedia apasionado por la tecnología y el desarrollo web!
 
