@@ -1,12 +1,25 @@
-# React + Vite
+# 🛍️ Tienda 3D - React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es un proyecto de **venta de objetos en 3D** desarrollado con **React** y **Vite**. Utiliza la librería [`<model-viewer>`](https://modelviewer.dev/) para mostrar modelos 3D interactivos directamente en el navegador.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Características principales
 
-## Expanding the ESLint configuration
+- ⚡️ Vite para una experiencia de desarrollo rápida y moderna.
+- ⚛️ React para la creación de interfaces dinámicas.
+- 🎯 ESLint configurado para mantener un código limpio.
+- 🧊 Visualización de modelos 3D con `<model-viewer>`.
+- 🔄 Hot Module Replacement (HMR) habilitado.
+  
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Instalación del proyecto
+
+Sigue estos pasos para ejecutar el proyecto en tu máquina local:
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/usuario/tienda-3d.git
+cd tienda-3d
