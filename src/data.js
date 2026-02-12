@@ -27,5 +27,26 @@ export const productos = [
     modelo: "/model/sacerdote.glb",
     descripcion: "Sacerdote sagrado que protege a los guerreros con hechizos de sanación y defensa. Su presencia inspira coraje y fortaleza en el calabozo."
   },
+  {
+    id: 5,
+    nombre: "Gallina lowpoly",
+    precio: 300000,
+    modelo: "/model/gallina.glb",
+    descripcion: "Gallina lowpoly, un modelo sencillo y minimalista."
+  },
+  {
+    id: 6,
+    nombre: "Van fuego",
+    precio: 500000,
+    modelo: "/model/van1.glb",
+    descripcion: "Van lista para salir a explorar."
+  },
+  {
+    id: 7,
+    nombre: "Poste de luz sencillo",
+    precio: 120000,
+    modelo: "/model/posteLuz.glb",
+    descripcion: "Poste de luz minimalista que ilumina tu lugar."
+  },
  
 ];
