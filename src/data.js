@@ -1,58 +1,31 @@
 export const productos = [
   {
     id: 1,
-    nombre: "Teléfono Antiguo",
+    nombre: "Ficha de Guerrero",
     precio: 300000,
-    modelo: "/model/telefono.glb",
-    descripcion: "Un clásico teléfono de disco, perfecto para dar un toque vintage a tu hogar u oficina. Funcional y decorativo."
+    modelo: "/model/guerrero.glb",
+    descripcion: "Guerrero valiente que explora calabozos oscuros con su escudo, siempre listo para enfrentar monstruos y proteger a su equipo"
   },
   {
     id: 2,
-    nombre: "Radio Retro de Bolsillo",
+    nombre: "Picaro",
     precio: 500000,
-    modelo: "/model/radio.glb",
-    descripcion: "Revive los sonidos del pasado con esta elegante radio retro. Diseño compacto y excelente calidad de audio."
+    modelo: "/model/picaro.glb",
+    descripcion: "Pícaro ágil y sigiloso que se mueve en las sombras del calabozo, desactiva trampas y ataca por sorpresa cuando el enemigo menos lo espera"
   },
   {
     id: 3,
-    nombre: "Televisión de Época",
+    nombre: "Bruja",
     precio: 120000,
-    modelo: "/model/television.glb",
-    descripcion: "Una pieza icónica de la historia de la televisión. Ideal para coleccionistas o como elemento decorativo en un espacio nostálgico."
+    modelo: "/model/bruja.glb",
+    descripcion: "Bruja misteriosa que domina la magia oscura, lanza hechizos poderosos desde la distancia y controla energías ocultas para derrotar a sus enemigos en el calabozo"
   },
   {
     id: 4,
-    nombre: "Mini Altavoz Vintage Dosmix",
+    nombre: "Sacerdote",
     precio: 30000,
-    modelo: "/model/vintage.glb",
-    descripcion: "Pequeño pero potente altavoz con un diseño vintage encantador. Conéctalo a tu dispositivo y disfruta de tu música."
+    modelo: "/model/sacerdote.glb",
+    descripcion: "Sacerdote sagrado que protege a los guerreros con hechizos de sanación y defensa. Su presencia inspira coraje y fortaleza en el calabozo."
   },
-  {
-    id: 5,
-    nombre: "Telescopio Astronómico Clásico",
-    precio: 800000,
-    modelo: "/model/telescopio.glb",
-    descripcion: "Explora las estrellas y los planetas con este telescopio de diseño clásico. Una herramienta fascinante para aficionados a la astronomía."
-  },
-  {
-    id: 6,
-    nombre: "Candelabro Antiguo de Lujo",
-    precio: 4500000,
-    modelo: "/model/candle.glb",
-    descripcion: "Impresionante candelabro con detalles intrincados, ideal para salones majestuosos o para crear una atmósfera romántica y sofisticada."
-  },
-  {
-    id: 7,
-    nombre: "Espejo de Mano con Marco Labrado",
-    precio: 2600000,
-    modelo: "/model/espejo.glb",
-    descripcion: "Un espejo de mano con un marco exquisitamente labrado, que añade un toque de elegancia y funcionalidad a tu tocador."
-  },
-  {
-    id: 8,
-    nombre: "Reloj de Bolsillo Antiguo",
-    precio: 750000,
-    modelo: "/model/reloj.glb",
-    descripcion: "Un hermoso reloj de bolsillo con mecanismo visible. Un accesorio distintivo o un regalo perfecto para amantes de la relojería."
-  },
+ 
 ];
